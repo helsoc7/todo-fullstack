@@ -19,7 +19,7 @@ const TodoList = () => {
 
   const fetchTodos = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/todos');
+      const response = await fetch('http://backend:8000/todos');
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
       setTodos(data.todos);
@@ -30,7 +30,7 @@ const TodoList = () => {
 
   const addTodo = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/todo', {
+      const response = await fetch('http://backend:8000/todo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ description: newTodo })
@@ -46,7 +46,7 @@ const TodoList = () => {
 
   const toggleTodoCompletion = async (todo) => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/todo/${todo.id}`, {
+      const response = await fetch(`http://backend:8000/todo/${todo.id}`, {
         method: 'PUT',
       });
       if (!response.ok) throw new Error('Network response was not ok');
@@ -58,7 +58,7 @@ const TodoList = () => {
 
   const removeTodo = async (id) => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/todo/${id}`, {
+      const response = await fetch(`http://backend:8000/todo/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) throw new Error('Network response was not ok');
@@ -70,7 +70,7 @@ const TodoList = () => {
 
   const editTodoItem = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/todo/${editingId}`, {
+      const response = await fetch(`http://backend:8000/todo/${editingId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ description: editTodo })
